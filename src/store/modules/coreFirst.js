@@ -1,6 +1,6 @@
 const actions = {
   coreFirst(store) {
-    console.log('store')
+    console.log('coreFirst')
     console.log(store)
   },
   coreFirst2(store) {
