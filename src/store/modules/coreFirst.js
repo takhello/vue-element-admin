@@ -1,3 +1,6 @@
+const state = {
+  stateCoreFirst: 'stateCoreFirst'
+}
 const actions = {
   coreFirst(store) {
     console.log('coreFirst')
@@ -10,5 +13,6 @@ const actions = {
 
 export default {
   namespaced: true,
+  state,
   actions
 }

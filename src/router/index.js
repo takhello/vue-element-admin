@@ -4,8 +4,37 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+// import Layout from '@/layout'
 
+const redirectIndex = resolve => require(['@/views/redirect/index'], resolve)
+const loginIndex = resolve => require(['@/views/login/index'], resolve)
+const authRedirect = resolve => require(['@/views/login/auth-redirect'], resolve)
+const page404 = resolve => require(['@/views/error-page/404'], resolve)
+const page401 = resolve => require(['@/views/error-page/401'], resolve)
+const dashboardIndex = resolve => require(['@/views/dashboard/index'], resolve)
+const documentationIndex = resolve => require(['@/views/documentation/index'], resolve)
+const guideIndex = resolve => require(['@/views/guide/index'], resolve)
+const profileIndex = resolve => require(['@/views/profile/index'], resolve)
+const permissionpage = resolve => require(['@/views/permission/page'], resolve)
+const permissiondirective = resolve => require(['@/views/permission/directive'], resolve)
+const permissionrole = resolve => require(['@/views/permission/role'], resolve)
+const iconsIndex = resolve => require(['@/views/icons/index'], resolve)
+const create = resolve => require(['@/views/example/create'], resolve)
+const edit = resolve => require(['@/views/example/edit'], resolve)
+const list = resolve => require(['@/views/example/list'], resolve)
+const tabIndex = resolve => require(['@/views/tab/index'], resolve)
+const logIndex = resolve => require(['@/views/error-log/index'], resolve)
+const exportexcel = resolve => require(['@/views/excel/export-excel'], resolve)
+const selectexcel = resolve => require(['@/views/excel/select-excel'], resolve)
+const mergeheader = resolve => require(['@/views/excel/merge-header'], resolve)
+const uploadexcel = resolve => require(['@/views/excel/upload-excel'], resolve)
+const zipIndex = resolve => require(['@/views/zip/index'], resolve)
+const pdfIndex = resolve => require(['@/views/pdf/index'], resolve)
+const pdfdownload = resolve => require(['@/views/pdf/download'], resolve)
+const themeIndex = resolve => require(['@/views/theme/index'], resolve)
+const clipboardIndex = resolve => require(['@/views/clipboard/index'], resolve)
+
+const Layout = resolve => require(['@/layout'], resolve)
 /* Router Modules */
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
@@ -46,28 +75,28 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
+        component: redirectIndex
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
+    component: loginIndex,
     hidden: true
   },
   {
     path: '/auth-redirect',
-    component: () => import('@/views/login/auth-redirect'),
+    component: authRedirect,
     hidden: true
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404'),
+    component: page404,
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error-page/401'),
+    component: page401,
     hidden: true
   },
   {
@@ -78,7 +107,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: dashboardIndex,
         name: 'Dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
@@ -90,7 +119,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/documentation/index'),
+        component: documentationIndex,
         name: 'Documentation',
         meta: { title: 'Documentation', icon: 'documentation', affix: true }
       }
@@ -103,7 +132,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/guide/index'),
+        component: guideIndex,
         name: 'Guide',
         meta: { title: 'Guide', icon: 'guide', noCache: true }
       }
@@ -117,7 +146,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/profile/index'),
+        component: profileIndex,
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
       }
@@ -144,7 +173,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'page',
-        component: () => import('@/views/permission/page'),
+        component: permissionpage,
         name: 'PagePermission',
         meta: {
           title: 'Page Permission',
@@ -153,7 +182,7 @@ export const asyncRoutes = [
       },
       {
         path: 'directive',
-        component: () => import('@/views/permission/directive'),
+        component: permissiondirective,
         name: 'DirectivePermission',
         meta: {
           title: 'Directive Permission'
@@ -162,7 +191,7 @@ export const asyncRoutes = [
       },
       {
         path: 'role',
-        component: () => import('@/views/permission/role'),
+        component: permissionrole,
         name: 'RolePermission',
         meta: {
           title: 'Role Permission',
@@ -178,7 +207,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/icons/index'),
+        component: iconsIndex,
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
       }
@@ -203,20 +232,20 @@ export const asyncRoutes = [
     children: [
       {
         path: 'create',
-        component: () => import('@/views/example/create'),
+        component: create,
         name: 'CreateArticle',
         meta: { title: 'Create Article', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
+        component: edit,
         name: 'EditArticle',
         meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/example/list'),
+        component: list,
         name: 'ArticleList',
         meta: { title: 'Article List', icon: 'list' }
       }
@@ -229,7 +258,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/tab/index'),
+        component: tabIndex,
         name: 'Tab',
         meta: { title: 'Tab', icon: 'tab' }
       }
@@ -248,13 +277,13 @@ export const asyncRoutes = [
     children: [
       {
         path: '401',
-        component: () => import('@/views/error-page/401'),
+        component: page401,
         name: 'Page401',
         meta: { title: '401', noCache: true }
       },
       {
         path: '404',
-        component: () => import('@/views/error-page/404'),
+        component: page404,
         name: 'Page404',
         meta: { title: '404', noCache: true }
       }
@@ -267,7 +296,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'log',
-        component: () => import('@/views/error-log/index'),
+        component: logIndex,
         name: 'ErrorLog',
         meta: { title: 'Error Log', icon: 'bug' }
       }
@@ -286,25 +315,25 @@ export const asyncRoutes = [
     children: [
       {
         path: 'export-excel',
-        component: () => import('@/views/excel/export-excel'),
+        component: exportexcel,
         name: 'ExportExcel',
         meta: { title: 'Export Excel' }
       },
       {
         path: 'export-selected-excel',
-        component: () => import('@/views/excel/select-excel'),
+        component: selectexcel,
         name: 'SelectExcel',
         meta: { title: 'Export Selected' }
       },
       {
         path: 'export-merge-header',
-        component: () => import('@/views/excel/merge-header'),
+        component: mergeheader,
         name: 'MergeHeader',
         meta: { title: 'Merge Header' }
       },
       {
         path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel'),
+        component: uploadexcel,
         name: 'UploadExcel',
         meta: { title: 'Upload Excel' }
       }
@@ -321,7 +350,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'download',
-        component: () => import('@/views/zip/index'),
+        component: zipIndex,
         name: 'ExportZip',
         meta: { title: 'Export Zip' }
       }
@@ -335,7 +364,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
+        component: pdfIndex,
         name: 'PDF',
         meta: { title: 'PDF', icon: 'pdf' }
       }
@@ -343,7 +372,7 @@ export const asyncRoutes = [
   },
   {
     path: '/pdf/download',
-    component: () => import('@/views/pdf/download'),
+    component: pdfdownload,
     hidden: true
   },
 
@@ -353,7 +382,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/theme/index'),
+        component: themeIndex,
         name: 'Theme',
         meta: { title: 'Theme', icon: 'theme' }
       }
@@ -366,7 +395,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/clipboard/index'),
+        component: clipboardIndex,
         name: 'ClipboardDemo',
         meta: { title: 'Clipboard', icon: 'clipboard' }
       }
